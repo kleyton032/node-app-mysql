@@ -7,6 +7,7 @@ router.get('/add', (req, res) => {
     res.render('links/add')
 });
 
+//add links
 router.post('/add', async (req, res)=>{
     const { title, url, description } = req.body;
     const newlink = {
@@ -17,6 +18,13 @@ router.post('/add', async (req, res)=>{
     await db.query('INSERT INTO links set ?', [newlink]);
     console.log(req.body);
     res.send("Recebido");
+});
+
+//consulta links
+router.get('/', async (req, res)=>{
+    const links = await db.query('SELECT * FROM links');
+    console.log(links);
+    res.render('links/list', {links})
 });
 
 module.exports = router 
