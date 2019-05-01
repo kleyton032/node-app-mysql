@@ -7,8 +7,16 @@ router.get('/add', (req, res) => {
     res.render('links/add')
 });
 
-router.post('/add', (req, res)=>{
+router.post('/add', async (req, res)=>{
+    const { title, url, description } = req.body;
+    const newlink = {
+        title,
+        url,
+        description
+    };
+    await db.query('INSERT INTO links set ?', [newlink]);
+    console.log(req.body);
     res.send("Recebido");
 });
 
-module.exports = router
+module.exports = router 
