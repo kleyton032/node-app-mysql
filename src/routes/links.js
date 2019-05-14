@@ -32,6 +32,7 @@ router.get('/', async (req, res)=>{
 router.get('/delete/:id', async (req, res) => {
     const { id } = req.params;
     await db.query('DELETE FROM links WHERE ID = ?', [id]);
+    req.flash('success', 'Link removido com sucesso');
     res.redirect('/links');
 });
 
@@ -51,6 +52,7 @@ router.post('/edit/:id', async (req, res) =>{
         description
     };
     await db.query('UPDATE links set ? WHERE id = ?', [newlink, id]);
+    req.flash('success', 'Link atualizado com sucesso');
     res.redirect('/links');
 });
 
