@@ -7,8 +7,8 @@ passport.use('local-signup', new PassportLocal({
     passReqToCallback: true
 },  async (req, username, password, done) => {
     console.log(req.body);
-}))
-
+}));
+ 
 //passport.serializeUser((usr, done) => {
 
 //})
